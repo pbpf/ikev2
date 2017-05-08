@@ -212,7 +212,7 @@ function pre_install(){
 
 # Download strongswan
 function download_files(){
-    strongswan_version='strongswan-5.5.1'
+    strongswan_version='strongswan-5.5.2'
     strongswan_file="$strongswan_version.tar.gz"
     if [ -f $strongswan_file ];then
         echo -e "$strongswan_file [$(__green "found")]"
@@ -352,6 +352,7 @@ conn iOS_cert
 
 conn android_xauth_psk
     keyexchange=ikev1
+    esp=aes128-sha1,3des-sha1!
     left=%defaultroute
     leftauth=psk
     leftsubnet=0.0.0.0/0
