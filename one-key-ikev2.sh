@@ -212,7 +212,7 @@ function pre_install(){
 
 # Download strongswan
 function download_files(){
-    strongswan_version='strongswan-5.5.2'
+    strongswan_version='strongswan-5.6.0'
     strongswan_file="$strongswan_version.tar.gz"
     if [ -f $strongswan_file ];then
         echo -e "$strongswan_file [$(__green "found")]"
@@ -335,21 +335,6 @@ function configure_ipsec(){
  cat > /usr/local/etc/ipsec.conf<<-EOF
 config setup
     uniqueids=never 
-
-conn iOS_cert
-    keyexchange=ikev1
-    fragmentation=yes
-    left=%defaultroute
-    leftauth=pubkey
-    leftsubnet=0.0.0.0/0
-    leftcert=server.cert.pem
-    right=%any
-    rightauth=pubkey
-    rightauth2=xauth
-    rightsourceip=10.31.2.0/24
-    rightcert=client.cert.pem
-    auto=add
-
 conn android_xauth_psk
     keyexchange=ikev1
     esp=aes128-sha1,3des-sha1!
